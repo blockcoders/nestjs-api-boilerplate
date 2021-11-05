@@ -1,0 +1,16 @@
+
+version: '3.7'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    networks:
+      - backend-network
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+networks:
+  backend-network:
