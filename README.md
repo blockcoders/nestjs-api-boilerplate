@@ -6,7 +6,7 @@ REST API NestJS Quick Start
 
  - Install [Node.js](https://nodejs.org/)
    - Recommended method is by using [NVM](https://github.com/creationix/nvm)
-   - Recommended Node.js version is v14.17
+   - Recommended Node.js version is v16.13
  - Install [Docker](https://docs.docker.com/get-docker/)
 
 ## Get Started

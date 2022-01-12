@@ -1,5 +1,6 @@
 import { plainToClass } from 'class-transformer'
 import { IsEnum, IsString, validateSync } from 'class-validator'
+import { Level as PinoLevel } from 'pino'
 
 export enum Environment {
   Development = 'development',
@@ -13,7 +14,7 @@ export class EnvironmentVariables {
   NODE_ENV: Environment = Environment.Development
 
   @IsString()
-  PORT = '8080'
+  PORT = '3000'
 
   @IsString()
   API_BASE_PATH = '/api/v1'
@@ -22,7 +23,7 @@ export class EnvironmentVariables {
   LOG_NAME = 'nestjs-api-boilerplate'
 
   @IsString()
-  LOG_LEVEL = 'debug'
+  LOG_LEVEL: PinoLevel = 'debug'
 }
 
 export function validate(config: Record<string, unknown>) {
