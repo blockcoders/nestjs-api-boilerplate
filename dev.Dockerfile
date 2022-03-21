@@ -3,13 +3,14 @@ FROM node:16.13-alpine
 # Create app directory
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+RUN npm i -g pnpm
 
+# Files required by pnpm install
+COPY .npmrc package.json pnpm-lock.yaml ./
+
+RUN pnpm i --frozen-lockfile
+
+# App source
 COPY . .
 
-RUN npm ci
-
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin
-
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "pnpm", "start:dev" ]

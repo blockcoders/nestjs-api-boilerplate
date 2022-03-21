@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Params as PinoParams } from 'nestjs-pino'
 import { Level as PinoLevel, LoggerOptions } from 'pino'
-import { Environment } from 'src/env/env.validation'
+import { Environment } from '../env/env.validation'
 
 @Injectable()
 export class EnvService {

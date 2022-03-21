@@ -1,4 +1,5 @@
 import { INestApplication } from '@nestjs/common'
+import { NestFastifyApplication, FastifyAdapter } from '@nestjs/platform-fastify'
 import { Test, TestingModule } from '@nestjs/testing'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
@@ -11,11 +12,18 @@ describe('AppController (e2e)', () => {
       imports: [AppModule],
     }).compile()
 
-    app = moduleFixture.createNestApplication()
-    await app.init()
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(new FastifyAdapter())
+    await app.listen(4000)
   })
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/').expect(200).expect('Hello World!')
+  afterEach(async () => {
+    await app.close()
+  })
+
+  it('/ping (GET)', async () => {
+    const response = await request(app.getHttpServer()).get('/ping')
+
+    expect(response.status).toEqual(200)
+    expect(response.text).toEqual('pong')
   })
 })

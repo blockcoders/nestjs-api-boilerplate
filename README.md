@@ -14,7 +14,7 @@ REST API NestJS Quick Start
 Install all the dependencies:
 
 ```
-npm ci
+pnpm i --frozen-lockfile
 ```
 
 Copy the `.env.sample` file to `.env`
@@ -25,7 +25,7 @@ cp .env.sample .env
 
 In the project directory, you can run:
 
-### `npm run start:dev`
+### `pnpm start:dev`
 
 Runs the NodeJs services in the development mode.\
 Open [localhost:8080/api/v1/ping](http://localhost:8080/api/v1/ping) to view it in the browser or Postman.
@@ -34,10 +34,10 @@ The service will reload if you make edits.
 
 ## Test
 
-### `npm run test`
+### `pnpm test`
 
 Running the unit tests.
 
-### `npm run test:cov`
+### `pnpm test:cov`
 
 Running the test coverage.
