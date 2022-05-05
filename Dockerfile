@@ -11,7 +11,7 @@ RUN npm i -g pnpm
 # Files required by pnpm install
 COPY .npmrc package.json pnpm-lock.yaml ./
 
-# Install dependencies from package-lock.json
+# Install dependencies from pnpm-lock.yaml
 RUN pnpm i --frozen-lockfile
 
 COPY . .
@@ -38,4 +38,7 @@ COPY --from=builder /usr/src/app/node_modules ./node_modules
 # installed in our final image.
 COPY --from=builder /usr/src/app/dist ./dist
 
-CMD [ "pnpm", "start:prod" ]
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+
+CMD [ "npm", "run", "start:prod" ]
